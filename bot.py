@@ -11,6 +11,12 @@ async def on_ready():
     print('-------')
 
 @bot.command()
+async def pair(ctx):
+	role = discord.utils.get(ctx.guild.roles, id=os.environ['ROLE_SPLAT'])
+	message = "ada yang mau pair {} ??".format(role.mention)
+	await ctx.send(message)
+
+@bot.command()
 async def kuy(ctx, gametype = ""):
     msg = "Ada yang mau " + get_valid_game_type(gametype) + ", " + os.environ['ROLE'] + "?"
     await ctx.send(msg)
