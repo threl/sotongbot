@@ -40,12 +40,17 @@ async def host(ctx):
     await ctx.message.channel.send(file=discord.File('host.png'))
 
 @bot.command()
+async def maju(ctx):
+    await ctx.message.channel.send(file=discord.File('nevergiveup.png'))
+
+@bot.command()
 async def info(ctx):
     embed = discord.Embed(title="SotongBot", description="Daftar commands:", color=0xeee657)
 
     embed.add_field(name="!kuy [maen]", value="ngajak mabar, [maen] bisa diganti dengan league/pair/+1/+2/salmon/next/pb/campursari", inline=False)
     embed.add_field(name="!pair", value="ngajak league pair", inline=False)
     embed.add_field(name="!host", value="menampilkan profile host mabar kebanggaan kita bersama", inline=False)
+    embed.add_field(name="!maju", value="menampilkan prinsip yang harus dipegang tiap inkling/octoling", inline=False)
     await ctx.send(embed=embed)
 
 bot.run(os.environ['BOT_TOKEN'])
