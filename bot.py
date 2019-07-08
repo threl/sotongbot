@@ -13,7 +13,13 @@ async def on_ready():
 @bot.command()
 async def pair(ctx):
 	role = discord.utils.get(ctx.guild.roles, name=os.environ['ROLE'])
-	message = "Ada yang mau pair {}?".format(role.mention)
+	message = "Ada yang mau league pair {}?".format(role.mention)
+	await ctx.send(message)
+
+@bot.command()
+async def team(ctx, kurang=""):
+	role = discord.utils.get(ctx.guild.roles, name=os.environ['ROLE'])
+	message = "Ada yang mau league team {} {}?".format(kurang,role.mention)
 	await ctx.send(message)
 
 @bot.command()
@@ -27,8 +33,9 @@ def get_valid_game_type(gametype = ""):
         "": "league",
         "league": gametype,
         "pair": gametype,
-        "+1": "league " + gametype,
-        "+2": "league " + gametype,
+        "team": gametype,
+        "-1": "league " + gametype,
+        "-2": "league " + gametype,
         "salmon": gametype,
         "next": "league rotasi berikutnya",
         "pb": gametype,
@@ -47,8 +54,9 @@ async def maju(ctx):
 async def info(ctx):
     embed = discord.Embed(title="SotongBot", description="Daftar commands:", color=0xeee657)
 
-    embed.add_field(name="!kuy [maen]", value="ngajak mabar, [maen] bisa diganti dengan league/pair/+1/+2/salmon/next/pb/campursari", inline=False)
+    embed.add_field(name="!kuy [maen]", value="ngajak mabar, [maen] bisa diganti dengan league/pair/team/-1/-2/salmon/next/pb/campursari", inline=False)
     embed.add_field(name="!pair", value="ngajak league pair", inline=False)
+    embed.add_field(name="!team [yuk]", value="ngajak league team, [yuk] bisa diganti dengan -1/-2", inline=False)
     embed.add_field(name="!host", value="menampilkan profile host mabar kebanggaan kita bersama", inline=False)
     embed.add_field(name="!maju", value="menampilkan prinsip yang harus dipegang tiap inkling/octoling", inline=False)
     await ctx.send(embed=embed)
